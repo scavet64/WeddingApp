@@ -106,11 +106,13 @@ public class WeddingFileController {
 	 * @return returns the file as a byte stream
 	 * @throws FileNotFoundException if not file is found
 	 */
-	@GetMapping("/downloadFile/{filehash:.+}")
-	public ResponseEntity<Resource> downloadFile(@PathVariable String fileID, HttpServletRequest request)
+	@GetMapping("/download/{filehash:.+}")
+	public ResponseEntity<Resource> downloadFile(@PathVariable String filehash, HttpServletRequest request)
 			throws FileNotFoundException {
 
-		File filePath = fileService.getDownloadPath(fileID);
+		WeddingFile file = fileService.getWeddingFileBySha256(filehash);
+		File filePath = fileService.getDownloadPath(filehash, file.getExtension());
+		
 		// Load file as Resource
 		Resource resource = fileService.loadFileAsResource(filePath);
 
@@ -121,9 +123,14 @@ public class WeddingFileController {
 		} catch (IOException ex) {
 			logger.info("Could not determine file type.");
 		}
+		
+		//idk why GetMimeType doesnt work
+		if(file.getExtension().equalsIgnoreCase("webm")) {
+			contentType = "video/webm";
+		}
 
 		// Fallback to the default content type if type could not be determined
-		if (contentType == null) {
+		if (contentType == null ) {
 			contentType = "application/octet-stream";
 		}
 
