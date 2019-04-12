@@ -1,9 +1,13 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { AuthGuard } from './auth/auth.guard';
+import { UploadComponent } from './home/upload/upload.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
-  { path: 'home', loadChildren: './home/home.module#HomePageModule' },
+  { path: 'home', loadChildren: './home/home.module#HomePageModule', canActivate: [AuthGuard]},
+  { path: 'login', loadChildren: './login/login.module#LoginPageModule', canActivate: [AuthGuard]},
+  { path: 'auth', loadChildren: './auth/auth.module#AuthPageModule' },
 ];
 
 @NgModule({

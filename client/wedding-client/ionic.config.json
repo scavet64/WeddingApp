@@ -1,5 +1,7 @@
 {
   "name": "wedding-client",
-  "integrations": {},
+  "integrations": {
+    "capacitor": {}
+  },
   "type": "angular"
 }

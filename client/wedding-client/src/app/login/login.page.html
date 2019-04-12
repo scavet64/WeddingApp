@@ -1,0 +1,37 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Authenticate</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="Aligner">
+  <!-- <ion-grid class="ion-align-items-center">
+    <ion-row class="ion-align-items-center">
+      <ion-col class="ion-align-items-center"> -->
+  <div class="Aligner">
+    <ion-card>
+      <!-- <ion-card-header>Login</ion-card-header> -->
+      <ion-card-content>
+        <form>
+          <ion-item>
+            <ion-label name="username" position="stacked">Username</ion-label>
+            <ion-input></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position="stacked">Password</ion-label>
+            <ion-input type="password"></ion-input>
+          </ion-item>
+          <!-- <ion-input title="Username"></ion-input>
+            <ion-input title="Password" type="password"></ion-input> -->
+          <ion-button expand="full" color="primary" (click)="onLogin()">
+            Login
+          </ion-button>
+        </form>
+      </ion-card-content>
+    </ion-card>
+  </div>
+
+  <!-- </ion-col>
+    </ion-row>
+  </ion-grid> -->
+</ion-content>
