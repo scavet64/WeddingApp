@@ -72,7 +72,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
 
                 .authorizeRequests().antMatchers("/registration").permitAll().anyRequest().authenticated()
-                .antMatchers("/auth/login").permitAll().anyRequest().authenticated();
+                .antMatchers("/auth/login").permitAll().anyRequest().authenticated()
+                .antMatchers("/*").permitAll().anyRequest().authenticated();
 
         httpSecurity.addFilterBefore(authenticationTokenFilter, UsernamePasswordAuthenticationFilter.class);
     }
@@ -81,6 +82,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     public void configure(WebSecurity web) throws Exception {
         // AuthenticationTokenFilter will ignore the below paths
         web.ignoring().antMatchers(HttpMethod.POST, authenticationPath);
+        //web.ignoring().antMatchers(HttpMethod.GET, "/");
 
 //				// allow anonymous resource requests
 //				.and().ignoring()
